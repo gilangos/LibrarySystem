@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/UserService";
 import { periodicService } from "../services/PeriodicService";
 
 
@@ -11,25 +10,25 @@ export class PeriodicController{
 
         console.log(titulo)
 
-        const service = new periodicService()
+        const periodicoService = new periodicService()
 
-        const user = await service.Create({titulo,descrição, autor})
+        const periodico = await periodicoService.Create({titulo,descrição, autor})
 
-        if(user instanceof Error){
-            return response.status(400).json(user.message)
+        if(periodico instanceof Error){
+            return response.status(400).json(periodico.message)
         }
         
 
-        return response.status(201).json(user)
+        return response.status(201).json({message: "periodico criado com sucesso!", periodico})
     }
 
 
     async getAll(request: Request, response: Response){
-        const rep = new periodicService()
+        const periodicoService = new periodicService()
 
-        const users = await rep.getAll()
+        const periodicos = await periodicoService.getAll()
 
-        return response.status(200).json(users)
+        return response.status(200).json(periodicos)
     }
 
 
@@ -38,15 +37,15 @@ export class PeriodicController{
 
         const { id } = request.params
         
-        const rep = new periodicService()
+        const periodicoService = new periodicService()
 
-        const user = await rep.DeleteOne(id)
+        const periodico = await periodicoService.DeleteOne(id)
 
-        if(user instanceof Error){
-            return response.status(400).json(user.message)
+        if(periodico instanceof Error){
+            return response.status(400).json(periodico.message)
         }
 
-        return response.status(200).json({message:"periodico deletado com sucesso!"})
+        return response.status(200).json({message:"periodico deletado com sucesso!", })
     }
 
     
@@ -55,9 +54,9 @@ export class PeriodicController{
         const {id} = request.params
         const { titulo, descrição } = request.body
 
-        const rep = new periodicService()
+        const periodicoService = new periodicService()
 
-        const result = await rep.update({id,titulo, descrição})
+        const result = await periodicoService.update({id,titulo, descrição})
 
         if(result instanceof Error){
             return response.status(400).json(result.message)

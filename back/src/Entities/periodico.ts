@@ -1,8 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany } from "typeorm"
-import { User } from "./usuario";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, OneToMany, JoinColumn } from "typeorm"
 import { v4 as uuid } from "uuid";
-import { Autor } from "./autor-b";
 import { Autorperiodico } from "./autor-p";
+import { Autor } from "./autor-b";
 
 @Entity("periodicos")
 export class Periódico{
@@ -12,13 +11,12 @@ export class Periódico{
     @Column('varchar')
     titulo: string
 
-
     @Column('varchar')
     descrição: string
 
-
-    @ManyToMany(()=> Autorperiodico, (Autorperiodico) => Autorperiodico.periodicos)
-    Autores: Autorperiodico[] 
+    @ManyToOne(()=> Autorperiodico, (Autorperiodico) => Autorperiodico.periodicos)
+    Autor: Autor
+    
 
     constructor(){
         if(!this.id){

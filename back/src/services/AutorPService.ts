@@ -1,33 +1,24 @@
 import { json } from "express";
-import { User} from "../Entities/usuario";
+
 import { getRepository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Livro } from "../Entities/livro";
 import { Autorperiodico } from "../Entities/autor-p";
 
 
-interface livro{
-    titulo: string,
-    genero: string,
-    disponivel: boolean
-}
-
-
 export class AutorPService{
-    async create({nome} ): Promise<Autorperiodico>{
+    // async create({nome} ){
 
-        const livroReposit = AppDataSource.getRepository(Autorperiodico)
+    //     const autorRepositorio = AppDataSource.getRepository(Autorperiodico)
 
-        const autor = livroReposit.create({
-            nome
-        })
+    //     const autor = autorRepositorio.create({
+    //         nome
+    //     })
 
-     
-        await livroReposit.save(autor)
-        
+    //     await autorRepositorio.save(autor)
 
-        return autor
-    }
+    //     return autor
+    // }
 
 
     async update({id, nome}){

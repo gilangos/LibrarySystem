@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
-import { User } from "./usuario";
 import { v4 as uuid } from "uuid";
 import { Autor } from "./autor-b";
+import { Usuario } from "./usuario";
 
 
 @Entity("livros")
@@ -18,8 +18,8 @@ export class Livro {
     @Column('boolean')
     disponivel: boolean;
 
-    @ManyToOne(()=> User, (User) => User.livros)
-    usuario: User;
+    @ManyToOne(()=> Usuario, (Usuario) => Usuario.livros)
+    usuario: Usuario;
 
     @ManyToOne(()=> Autor, (Autor) => Autor.livros)
     autor: Autor

@@ -10,17 +10,16 @@ import { BookController} from "./controllers/BookController"
 import { PeriodicController } from "./controllers/PeriodicController"
 import { AutorPController } from "./controllers/AutorPController"
 import { AutorBController } from "./controllers/AutorBController"
+import { Periódico } from "./Entities/periodico"
+import { Autorperiodico } from "./Entities/autor-p"
 
 
 
-// 1. Sistema de Gerenciamento de Biblioteca
-
-/*Um projeto onde você pode criar um banco de dados par
-gerenciar livros, periódicos, autores, usuários e empréstimos.*/
 
 
 AppDataSource.initialize().then(async ()=> {
     console.log("Banco rodando")
+
 
     const app = express()
     app.use(express.json())
@@ -31,6 +30,9 @@ AppDataSource.initialize().then(async ()=> {
     app.post('/usuarios', new UserController().create)
     app.put('/usuarios/:id', new UserController().update)
     app.delete('/usuarios/:id', new UserController().Delete)
+    app.post('/usuario/login', new UserController().login)
+    app.post('/usuario/addlivro', new UserController().AddLivro)
+    app.post('/usuario/deletelivro', new UserController().RemLivro)
 
     app.get('/livros',new BookController().getAll)
     app.post('/livros',new BookController().create)
@@ -46,19 +48,19 @@ AppDataSource.initialize().then(async ()=> {
 
 
     app.get('/autores-periodicos',new AutorPController().getAll)
-    app.post('/autores-periodicos',new AutorPController().create)
+    // app.post('/autores-periodicos',new AutorPController().create)
     app.put('/autores-periodicos/:id',new AutorPController().update)
     app.delete('/autores-periodicos/:id',new AutorPController().Delete)
 
 
     app.get('/autores-livros',new AutorBController().getAll)
-    app.post('/autor-livro',new AutorBController().create)
-    app.put('/autor-livro/:id',new AutorBController().update)
-    app.delete('/autor-livro/:id',new AutorBController().Delete)
+    // app.post('/autores-livros',new AutorBController().create)
+    app.put('/autores-livros/:id',new AutorBController().update)
+    app.delete('/autores-livros/:id',new AutorBController().Delete)
 
 
     app.listen(3003, ()=>{
-        console.log("server is running on port 5050")
+        console.log("server is running on port 3003")
     })
 })
 

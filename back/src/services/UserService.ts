@@ -1,5 +1,5 @@
 import { json } from "express";
-import { User} from "../Entities/usuario";
+import { Usuario} from "../Entities/usuario";
 import { getRepository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Livro } from "../Entities/livro";
@@ -15,15 +15,13 @@ export class UserService{
     
     async Create({ username, password }: user){
 
-        console.log(username, password)
-
-        const repositorio = AppDataSource.getRepository(User)
+        const repositorio = AppDataSource.getRepository(Usuario)
 
         const user = await repositorio.findOneBy({username})
 
 
         if(user){
-            throw new Error("username nulo !");
+            throw new Error("username ja existe, tente outro !");
         }
         
         const usuario = repositorio.create({
@@ -40,7 +38,7 @@ export class UserService{
 
 
     async update({id, username, password}: {id: string, username: string, password: string}){
-        const rep = AppDataSource.getRepository(User)
+        const rep = AppDataSource.getRepository(Usuario)
 
         const user = await rep.findOneBy({id: id})
 
@@ -60,7 +58,7 @@ export class UserService{
 
     async DeleteOne(id: string){
 
-        const rep = AppDataSource.getRepository(User)
+        const rep = AppDataSource.getRepository(Usuario)
 
         const user = await rep.findOneBy({id: id})
 
@@ -77,12 +75,67 @@ export class UserService{
 
     async getAll(){
 
-        const rep = AppDataSource.getRepository(User)
+        const rep = AppDataSource.getRepository(Usuario)
 
         const usuarios = await rep.find({relations:{
             livros: true
         }})
 
         return usuarios
+    }
+
+    async login({username, password}){
+        
+        const usuarioRep = AppDataSource.getRepository(Usuario)
+
+        const userName = usuarioRep.findOne({
+            where: {username: username, password: password},
+            relations: ['livros'],
+          })
+
+        
+        return userName 
+    }
+
+  
+
+    async AddLivro({usuarioId, livroId}){
+        const livroRepositorio = AppDataSource.getRepository(Livro)
+        const UsuarioRepositorio = AppDataSource.getRepository(Usuario)
+
+        const livro = await livroRepositorio.findOneBy({id: livroId})
+        const usuario = await UsuarioRepositorio.findOneBy({id: usuarioId})
+
+        if(!livro){
+            throw new Error("livro não existe!")
+        }
+
+        livro.usuario = usuario ? usuario : livro.usuario
+        livro.disponivel = false
+
+        await livroRepositorio.save(livro)
+        await UsuarioRepositorio.save(usuario) 
+
+        return livro
+    }
+
+
+
+    async RemoveLivro({usuarioId, livroId}: {usuarioId: string, livroId: string}){
+        const livroRepositorio = AppDataSource.getRepository(Livro)
+        
+
+        const livro = await livroRepositorio.findOneBy({id: livroId})
+        // const usuario = await UsuarioRepositorio.findOneBy({id: usuarioId})
+
+        if(!livro){
+            throw new Error("livro não existe!")
+        }
+
+        livro.usuario = null
+        livro.disponivel = true
+        await livroRepositorio.save(livro)
+
+        return livro
     }
 }

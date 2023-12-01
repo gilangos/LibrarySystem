@@ -6,21 +6,10 @@ import { AutorBService } from "../services/AutorBService";
 
 export class AutorBController{
 
-    async create(request: Request, response: Response){
-        
-        const {nome} = request.body;
-
-        const repositorio = new AutorBService()
-
-        const autor = await repositorio.create({nome})
-        
-        return response.status(201).json(autor)
-    }
-    
     async getAll(request: Request, response: Response){
-        const rep = new AutorBService()
+        const autorService = new AutorBService()
 
-        const livros = await rep.getAll()
+        const livros = await autorService.getAll()
 
         return response.status(200).json(livros)
     }
@@ -29,9 +18,9 @@ export class AutorBController{
 
         const { id } = request.params
         
-        const rep = new AutorBService()
+        const autorService = new AutorBService()
 
-        const autor = await rep.DeleteOne(id)
+        const autor = await autorService.DeleteOne(id)
 
         if(autor instanceof Error){
             return response.status(400).json(autor.message)
@@ -47,9 +36,9 @@ export class AutorBController{
         const {id} = request.params
         const {nome } = request.body
 
-        const rep = new AutorBService()
+        const autorService = new AutorBService()
 
-        const result = await rep.update({id, nome})
+        const result = await autorService.update({id, nome})
 
         if(result instanceof Error){
             return response.status(400).json(result.message)

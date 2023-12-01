@@ -3,7 +3,7 @@ import { Livro } from "./livro"
 import {v4 as uuid } from "uuid"
 
 @Entity("usuarios")
-export class User{
+export class Usuario{
     @PrimaryGeneratedColumn('uuid')
     id: string
 

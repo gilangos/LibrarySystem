@@ -9,17 +9,17 @@ export class BookController{
         
         const {titulo, genero, autor} = request.body
 
-        const repositorio = new BookService()
+        const livroService = new BookService()
 
-        const livro = await repositorio.create({titulo, genero, autor})
+        const livro = await livroService.create({titulo, genero, autor})
         
-        return response.status(201).json(livro)
+        return response.status(201).json({message: "livro criado com sucesso!", livro})
     }
     
     async getAll(request: Request, response: Response){
-        const rep = new BookService()
+        const livroService = new BookService()
 
-        const livros = await rep.getAll()
+        const livros = await livroService.getAll()
 
         return response.status(200).json(livros)
     }
@@ -28,9 +28,9 @@ export class BookController{
 
         const { id } = request.params
         
-        const rep = new BookService()
+        const livroService = new BookService()
 
-        const livro = await rep.DeleteOne(id)
+        const livro = await livroService.DeleteOne(id)
 
         if(livro instanceof Error){
             return response.status(400).json(livro.message)
@@ -46,9 +46,9 @@ export class BookController{
         const {id} = request.params
         const {titulo, genero } = request.body
 
-        const rep = new BookService()
+        const livroService = new BookService()
 
-        const result = await rep.update({id,titulo, genero})
+        const result = await livroService.update({id,titulo, genero})
 
         if(result instanceof Error){
             return response.status(400).json(result.message)

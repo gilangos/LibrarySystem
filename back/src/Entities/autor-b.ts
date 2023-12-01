@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm"
-import { User } from "./usuario";
 import { v4 as uuid } from "uuid";
 import { Livro } from "./livro";
 

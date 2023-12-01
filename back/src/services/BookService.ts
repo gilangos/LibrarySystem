@@ -44,9 +44,9 @@ export class BookService{
 
 
     async update({id, titulo , genero}: {id: string, titulo: string, genero: string}){
-        const rep = AppDataSource.getRepository(Livro)
+        const livroRepositorio = AppDataSource.getRepository(Livro)
 
-        const livro = await rep.findOneBy({id: id})
+        const livro = await livroRepositorio.findOneBy({id: id})
 
         if(!livro){
             throw new Error("livro não existe!")
@@ -55,7 +55,7 @@ export class BookService{
         livro.titulo = titulo ? titulo : livro.titulo
         livro.genero = genero ? genero : livro.genero
 
-        await rep.save(livro)
+        await livroRepositorio.save(livro)
 
         return livro
     }
@@ -63,15 +63,15 @@ export class BookService{
 
     async DeleteOne(id: string){
 
-        const rep = AppDataSource.getRepository(Livro)
+        const livroRepositorio = AppDataSource.getRepository(Livro)
 
-        const livro = await rep.findOneBy({id: id})
+        const livro = await livroRepositorio.findOneBy({id: id})
 
         if(!livro){
             throw new Error("livro não existe!")
         }
 
-        await rep.remove(livro)
+        await livroRepositorio.remove(livro)
 
 
         return livro
