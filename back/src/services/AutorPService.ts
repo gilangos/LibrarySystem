@@ -22,9 +22,9 @@ export class AutorPService{
 
 
     async update({id, nome}){
-        const rep = AppDataSource.getRepository(Autorperiodico)
+        const autorRepositorio = AppDataSource.getRepository(Autorperiodico)
 
-        const autor = await rep.findOneBy({id: id})
+        const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
             throw new Error("autor não existe!")
@@ -32,7 +32,7 @@ export class AutorPService{
 
         autor.nome = nome ? nome : autor.nome
 
-        await rep.save(autor)
+        await autorRepositorio.save(autor)
 
         return autor
     }
@@ -40,15 +40,15 @@ export class AutorPService{
 
     async DeleteOne(id: string){
 
-        const rep = AppDataSource.getRepository(Autorperiodico)
+        const autorRepositorio = AppDataSource.getRepository(Autorperiodico)
 
-        const autor = await rep.findOneBy({id: id})
+        const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
             throw new Error("autor não existe!")
         }
 
-        await rep.remove(autor)
+        await autorRepositorio.remove(autor)
 
 
         return autor
@@ -58,9 +58,9 @@ export class AutorPService{
 
 
     async getAll(){
-        const Autor = AppDataSource.getRepository(Autorperiodico)
+        const autorRepositorio = AppDataSource.getRepository(Autorperiodico)
 
-        return Autor.find({relations:{
+        return autorRepositorio.find({relations:{
             periodicos: true
         }})
     }

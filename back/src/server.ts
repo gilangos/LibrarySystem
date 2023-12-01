@@ -2,16 +2,11 @@ import "reflect-metadata"
 import express from 'express'
 import { config } from 'dotenv'
 import { AppDataSource} from "./data-source"
-
 import { UserController } from "./controllers/UserController"
-
-
 import { BookController} from "./controllers/BookController"
 import { PeriodicController } from "./controllers/PeriodicController"
 import { AutorPController } from "./controllers/AutorPController"
 import { AutorBController } from "./controllers/AutorBController"
-import { Periódico } from "./Entities/periodico"
-import { Autorperiodico } from "./Entities/autor-p"
 
 
 
