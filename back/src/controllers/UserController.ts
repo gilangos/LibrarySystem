@@ -44,7 +44,7 @@ export class UserController{
             return response.status(400).json(user.message)
         }
 
-        return response.status(200).json({message:"usuario deletado com sucesso!"})
+        return response.status(200).json({message:"usuario deletado com sucesso!", user})
     }
 
     

@@ -45,7 +45,7 @@ export class PeriodicController{
             return response.status(400).json(periodico.message)
         }
 
-        return response.status(200).json({message:"periodico deletado com sucesso!", })
+        return response.status(200).json({message:"periodico deletado com sucesso!", periodico })
     }
 
     
