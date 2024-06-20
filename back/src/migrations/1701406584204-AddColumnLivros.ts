@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from "typeorm"
+import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm'
 
 export class AddColumnLivros1701406584204 implements MigrationInterface {
 

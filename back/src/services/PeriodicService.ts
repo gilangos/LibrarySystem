@@ -1,8 +1,8 @@
 
 // import { Autor } from "../Entities/autor-b";
-import { Autorperiodico } from "../Entities/autor-p";
-import { Periódico } from "../Entities/periodico";
-import { AppDataSource } from "../data-source";
+import { Autorperiodico } from '../Entities/autor-p';
+import { Periódico } from '../Entities/periodico';
+import { AppDataSource } from '../data-source';
 
 
 
@@ -47,7 +47,7 @@ export class periodicService{
         const periodico = await periodicoRepositorio.findOneBy({id: id})
 
         if(!periodico){
-            throw new Error("periodico não existe!")
+            throw new Error('periodico não existe!')
         }
 
         
@@ -67,7 +67,7 @@ export class periodicService{
         const periodico = await periodicoRepositorio.findOneBy({id: id})
 
         if(!periodico){
-            throw new Error("periodico não existe!")
+            throw new Error('periodico não existe!')
         }
 
         await periodicoRepositorio.remove(periodico)

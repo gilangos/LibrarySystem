@@ -1,9 +1,6 @@
-import { json } from "express";
 
-import { getRepository } from "typeorm";
-import { AppDataSource } from "../data-source";
-import { Livro } from "../Entities/livro";
-import { Autorperiodico } from "../Entities/autor-p";
+import { AppDataSource } from '../data-source';
+import { Autorperiodico } from '../Entities/autor-p';
 
 
 export class AutorPService{
@@ -27,7 +24,7 @@ export class AutorPService{
         const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
-            throw new Error("autor não existe!")
+            throw new Error('autor não existe!')
         }
 
         autor.nome = nome ? nome : autor.nome
@@ -45,7 +42,7 @@ export class AutorPService{
         const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
-            throw new Error("autor não existe!")
+            throw new Error('autor não existe!')
         }
 
         await autorRepositorio.remove(autor)
@@ -53,9 +50,6 @@ export class AutorPService{
 
         return autor
     }
-
-
-
 
     async getAll(){
         const autorRepositorio = AppDataSource.getRepository(Autorperiodico)

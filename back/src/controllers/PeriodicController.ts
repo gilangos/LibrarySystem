@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { periodicService } from "../services/PeriodicService";
+import { Request, Response } from 'express';
+import { periodicService } from '../services/PeriodicService';
 
 
 export class PeriodicController{
@@ -19,7 +19,7 @@ export class PeriodicController{
         }
         
 
-        return response.status(201).json({message: "periodico criado com sucesso!", periodico})
+        return response.status(201).json({message: 'periodico criado com sucesso!', periodico})
     }
 
 
@@ -45,7 +45,7 @@ export class PeriodicController{
             return response.status(400).json(periodico.message)
         }
 
-        return response.status(200).json({message:"periodico deletado com sucesso!", periodico })
+        return response.status(200).json({message:'periodico deletado com sucesso!', periodico })
     }
 
     
@@ -62,7 +62,7 @@ export class PeriodicController{
             return response.status(400).json(result.message)
         }
 
-        return response.status(200).json({message:"periodico atualizado com sucesso", result})
+        return response.status(200).json({message:'periodico atualizado com sucesso', result})
     }
 
 

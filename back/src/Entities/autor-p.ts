@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, OneToMany } from "typeorm"
-import { v4 as uuid } from "uuid";
+import { Entity, Column, PrimaryGeneratedColumn,OneToMany } from 'typeorm'
+import { v4 as uuid } from 'uuid';
 
-import { Periódico } from "./periodico";
+import { Periódico } from './periodico';
 
-@Entity("autores_periodicos")
+@Entity('autores_periodicos')
 export class Autorperiodico{
     @PrimaryGeneratedColumn('uuid')
     id: string
@@ -11,7 +11,7 @@ export class Autorperiodico{
     @Column('varchar')
     nome: string
 
-    @OneToMany(()=> Periódico, periodico => periodico.Autor)
+    @OneToMany(()=> Periódico, (periodico) => periodico.Autor)
     // @JoinTable({name: 'autores_peri', joinColumn:{ name:'autorId', referencedColumnName: 'id'}, inverseJoinColumn: {name: 'periodicoId', referencedColumnName: 'id'}})
     periodicos: Periódico[]
 

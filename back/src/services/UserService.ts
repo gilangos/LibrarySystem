@@ -1,14 +1,16 @@
-import { json } from "express";
-import { Usuario} from "../Entities/usuario";
-import { getRepository } from "typeorm";
-import { AppDataSource } from "../data-source";
-import { Livro } from "../Entities/livro";
+
+import { Usuario} from '../Entities/usuario';
+import { AppDataSource } from '../data-source';
+import { Livro } from '../Entities/livro';
 
 
 interface user{
     username: string,
     password: string
 }
+
+
+
 
 
 export class UserService{
@@ -21,7 +23,7 @@ export class UserService{
 
 
         if(user){
-            throw new Error("username ja existe, tente outro !");
+            throw new Error('username ja existe, tente outro !');
         }
         
         const usuario = repositorio.create({
@@ -43,7 +45,7 @@ export class UserService{
         const user = await rep.findOneBy({id: id})
 
         if(!user){
-            throw new Error("usuario não existe!")
+            throw new Error('usuario não existe!')
         }
 
         
@@ -63,7 +65,7 @@ export class UserService{
         const user = await rep.findOneBy({id: id})
 
         if(!user){
-            throw new Error("usuario não existe!")
+            throw new Error('usuario não existe!')
         }
 
         await rep.remove(user)
@@ -106,22 +108,23 @@ export class UserService{
         const livro = await livroRepositorio.findOneBy({id: livroId})
         const usuario = await UsuarioRepositorio.findOneBy({id: usuarioId})
 
-        if(!livro){
-            throw new Error("livro não existe!")
+        if(!livro)
+        {
+            throw new Error('livro não existe!')
         }
 
         livro.usuario = usuario ? usuario : livro.usuario
         livro.disponivel = false
 
         await livroRepositorio.save(livro)
-        await UsuarioRepositorio.save(usuario) 
+        await UsuarioRepositorio.save(usuario)
 
         return livro
     }
 
 
 
-    async RemoveLivro({usuarioId, livroId}: {usuarioId: string, livroId: string}){
+    async RemoveLivro({livroId}: {livroId: string}){
         const livroRepositorio = AppDataSource.getRepository(Livro)
         
 
@@ -129,7 +132,7 @@ export class UserService{
         // const usuario = await UsuarioRepositorio.findOneBy({id: usuarioId})
 
         if(!livro){
-            throw new Error("livro não existe!")
+            throw new Error('livro não existe!')
         }
 
         livro.usuario = null

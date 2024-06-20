@@ -1,9 +1,12 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { BookService } from "../services/BookService";
+import { BookService } from '../services/BookService';
 
 
 export class BookController{
+
+    
+    // constructor(private readonly bookService: BookService){}
 
     async create(request: Request, response: Response){
         
@@ -13,7 +16,7 @@ export class BookController{
 
         const livro = await livroService.create({titulo, genero, autor})
         
-        return response.status(201).json({message: "livro criado com sucesso!", livro})
+        return response.status(201).json({message: 'livro criado com sucesso!', livro})
     }
     
     async getAll(request: Request, response: Response){
@@ -36,7 +39,7 @@ export class BookController{
             return response.status(400).json(livro.message)
         }
 
-        return response.status(200).json({message:"livro deletado com sucesso!", livro})
+        return response.status(200).json({message:'livro deletado com sucesso!', livro})
     }
 
     
@@ -54,7 +57,7 @@ export class BookController{
             return response.status(400).json(result.message)
         }
 
-        return response.status(200).json({message:"livro atualizado com sucesso!", result})
+        return response.status(200).json({message:'livro atualizado com sucesso!', result})
     }
 
 

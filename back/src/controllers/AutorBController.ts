@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import { BookService } from "../services/BookService";
-import { AutorBService } from "../services/AutorBService";
+import { AutorBService } from '../services/AutorBService';
 
 
 export class AutorBController{
@@ -26,7 +25,7 @@ export class AutorBController{
             return response.status(400).json(autor.message)
         }
 
-        return response.status(200).json({message:"autor deletado com sucesso!", autor})
+        return response.status(200).json({message:'autor deletado com sucesso!', autor})
     }
 
     
@@ -44,7 +43,7 @@ export class AutorBController{
             return response.status(400).json(result.message)
         }
 
-        return response.status(200).json({message:"autor atualizado com sucesso!", result})
+        return response.status(200).json({message:'autor atualizado com sucesso!', result})
     }
 
 

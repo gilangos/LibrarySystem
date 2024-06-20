@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner ,TableColumn, TableForeignKey} from "typeorm"
+import { MigrationInterface, QueryRunner ,TableColumn, TableForeignKey} from 'typeorm'
 
 export class AddRelationAutor1701303230303 implements MigrationInterface {
 

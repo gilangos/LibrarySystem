@@ -1,6 +1,6 @@
 
-import { AppDataSource } from "../data-source";
-import { Autor } from "../Entities/autor-b";
+import { AppDataSource } from '../data-source';
+import { Autor } from '../Entities/autor-b';
 
 
 export class AutorBService{
@@ -11,7 +11,7 @@ export class AutorBService{
         const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
-            throw new Error("Autor não existe!")
+            throw new Error('Autor não existe!')
         }
 
         autor.nome = nome ? nome : autor.nome
@@ -29,7 +29,7 @@ export class AutorBService{
         const autor = await autorRepositorio.findOneBy({id: id})
 
         if(!autor){
-            throw new Error("autor não existe!")
+            throw new Error('autor não existe!')
         }
 
         await autorRepositorio.remove(autor)

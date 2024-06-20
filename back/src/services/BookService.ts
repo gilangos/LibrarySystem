@@ -1,8 +1,7 @@
 
-import { getRepository } from "typeorm";
-import { AppDataSource } from "../data-source";
-import { Livro } from "../Entities/livro";
-import { Autor } from "../Entities/autor-b";
+import { AppDataSource } from '../data-source';
+import { Livro } from '../Entities/livro';
+import { Autor } from '../Entities/autor-b';
 
 
 interface livro{
@@ -49,7 +48,7 @@ export class BookService{
         const livro = await livroRepositorio.findOneBy({id: id})
 
         if(!livro){
-            throw new Error("livro não existe!")
+            throw new Error('livro não existe!')
         }
 
         livro.titulo = titulo ? titulo : livro.titulo
@@ -68,7 +67,7 @@ export class BookService{
         const livro = await livroRepositorio.findOneBy({id: id})
 
         if(!livro){
-            throw new Error("livro não existe!")
+            throw new Error('livro não existe!')
         }
 
         await livroRepositorio.remove(livro)

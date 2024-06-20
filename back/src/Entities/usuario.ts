@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { Livro } from "./livro"
-import {v4 as uuid } from "uuid"
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { Livro } from './livro'
+import {v4 as uuid } from 'uuid'
 
-@Entity("usuarios")
+@Entity('usuarios')
 export class Usuario{
     @PrimaryGeneratedColumn('uuid')
     id: string

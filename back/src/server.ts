@@ -1,19 +1,19 @@
-import "reflect-metadata"
+import 'reflect-metadata'
 import express from 'express'
 import { config } from 'dotenv'
-import { AppDataSource} from "./data-source"
-import { UserController } from "./controllers/UserController"
-import { BookController} from "./controllers/BookController"
-import { PeriodicController } from "./controllers/PeriodicController"
-import { AutorPController } from "./controllers/AutorPController"
-import { AutorBController } from "./controllers/AutorBController"
+import { AppDataSource} from './data-source'
+import { UserController } from './controllers/UserController'
+import { BookController} from './controllers/BookController'
+import { PeriodicController } from './controllers/PeriodicController'
+import { AutorPController } from './controllers/AutorPController'
+import { AutorBController } from './controllers/AutorBController'
 
 
 
 
 
-AppDataSource.initialize().then(async ()=> {
-    console.log("Banco rodando")
+AppDataSource.initialize().then(async()=> {
+    console.log('Banco rodando')
 
 
     const app = express()
@@ -35,7 +35,6 @@ AppDataSource.initialize().then(async ()=> {
     app.delete('/livros/:id',new BookController().Delete)
 
 
-
     app.get('/periodicos',new PeriodicController().getAll)
     app.post('/periodicos',new PeriodicController().create)
     app.put('/periodicos/:id',new PeriodicController().update)
@@ -54,8 +53,8 @@ AppDataSource.initialize().then(async ()=> {
     app.delete('/autores-livros/:id',new AutorBController().Delete)
 
 
-    app.listen(3003, ()=>{
-        console.log("server is running on port 3003")
+    app.listen(3003 ||  process.env.TYPEORM_PORT, ()=>{
+        console.log('server is running on port 3003')
     })
 })
 

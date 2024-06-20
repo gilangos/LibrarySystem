@@ -1,26 +1,27 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, OneToMany, JoinColumn } from "typeorm"
-import { v4 as uuid } from "uuid";
-import { Autorperiodico } from "./autor-p";
-import { Autor } from "./autor-b";
+import {
+  Entity, Column, PrimaryGeneratedColumn, ManyToOne,
+} from 'typeorm';
+import { v4 as uuid } from 'uuid';
+import { Autorperiodico } from './autor-p';
+import { Autor } from './autor-b';
 
-@Entity("periodicos")
-export class Periódico{
+@Entity('periodicos')
+export class Periódico {
     @PrimaryGeneratedColumn('uuid')
-    id: string
+      id: string;
 
     @Column('varchar')
-    titulo: string
+      titulo: string;
 
     @Column('varchar')
-    descrição: string
+      descrição: string;
 
-    @ManyToOne(()=> Autorperiodico, (Autorperiodico) => Autorperiodico.periodicos)
-    Autor: Autor
-    
+    @ManyToOne(() => Autorperiodico, (Autorperiodico) => Autorperiodico.periodicos)
+      Autor: Autor;
 
-    constructor(){
-        if(!this.id){
-            this.id = uuid()
-        }
+    constructor() {
+      if (!this.id) {
+        this.id = uuid();
+      }
     }
 }

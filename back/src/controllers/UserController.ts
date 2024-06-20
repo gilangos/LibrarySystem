@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { UserService } from "../services/UserService";
+import { Request, Response } from 'express';
+import { UserService } from '../services/UserService';
 
 
 export class UserController{
@@ -18,7 +18,7 @@ export class UserController{
         }
         
 
-        return response.status(201).json({message: "usuario criado com sucesso!", user})
+        return response.status(201).json({message: 'usuario criado com sucesso!', user})
     }
 
 
@@ -44,7 +44,7 @@ export class UserController{
             return response.status(400).json(user.message)
         }
 
-        return response.status(200).json({message:"usuario deletado com sucesso!", user})
+        return response.status(200).json({message:'usuario deletado com sucesso!', user})
     }
 
     
@@ -61,7 +61,7 @@ export class UserController{
             return response.status(400).json(result.message)
         }
 
-        return response.status(200).json({message:"usuario atualizado com sucesso !", result})
+        return response.status(200).json({message:'usuario atualizado com sucesso !', result})
     }
 
 
@@ -74,7 +74,7 @@ export class UserController{
         
 
         if(!username){
-            return response.status(400).json({message: "todos os campos são obrigatorios!"})
+            return response.status(400).json({message: 'todos os campos são obrigatorios!'})
         }
 
         const userService = new UserService()
@@ -100,7 +100,7 @@ export class UserController{
             return response.status(400).json(result.message);
         }
         
-        return response.status(200).json({message: "livro adicionado a lista do usuario", result})
+        return response.status(200).json({message: 'livro adicionado a lista do usuario', result})
     }
 
 
@@ -115,7 +115,7 @@ export class UserController{
             return response.status(400).json(result.message)
         }
         
-        return response.status(200).json({message: "livro removido da lista do usuario!", result})
+        return response.status(200).json({message: 'livro removido da lista do usuario!', result})
     }
 
     

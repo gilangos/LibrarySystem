@@ -1,10 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
-import { v4 as uuid } from "uuid";
-import { Autor } from "./autor-b";
-import { Usuario } from "./usuario";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import { v4 as uuid } from 'uuid';
+import { Autor } from './autor-b';
+import { Usuario } from './usuario';
 
 
-@Entity("livros")
+@Entity('livros')
 export class Livro {
     @PrimaryGeneratedColumn('uuid')
     id: string
