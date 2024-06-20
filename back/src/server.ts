@@ -13,7 +13,7 @@ import { AutorBController } from './controllers/AutorBController'
 
 
 AppDataSource.initialize().then(async()=> {
-    console.log('Banco rodando')
+    
 
 
     const app = express()
