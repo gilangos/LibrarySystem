@@ -42,13 +42,11 @@ AppDataSource.initialize().then(async()=> {
 
 
     app.get('/autores-periodicos',new AutorPController().getAll)
-    // app.post('/autores-periodicos',new AutorPController().create)
     app.put('/autores-periodicos/:id',new AutorPController().update)
     app.delete('/autores-periodicos/:id',new AutorPController().Delete)
 
 
     app.get('/autores-livros',new AutorBController().getAll)
-    // app.post('/autores-livros',new AutorBController().create)
     app.put('/autores-livros/:id',new AutorBController().update)
     app.delete('/autores-livros/:id',new AutorBController().Delete)
 
